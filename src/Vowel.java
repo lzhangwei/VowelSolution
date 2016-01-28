@@ -1,28 +1,31 @@
 public class Vowel {
     public String replaceVowelWithMommyString(String input) {
         int length = input.length();
+        int count = getCount(input, length);
+
+        String result = input;
+        if (((count / (double) length) * 100) > 30) {
+            for (int i = 0; i < length; i++) {
+                if (isVowel(input.charAt(i))) {
+                    if (i > 0 && isVowel(input.charAt(i - 1))) {
+                        result = result.replaceFirst(String.valueOf(input.charAt(i)), "");
+                    } else {
+                        result = result.replaceFirst(String.valueOf(input.charAt(i)), "mommy");
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private int getCount(String input, int length) {
         int count = 0;
         for (int i = 0; i < length; i++) {
             if (isVowel(input.charAt(i))) {
                 count += 1;
             }
         }
-
-        String[] vowels = {"a", "e", "i", "o", "u"};
-        String result = input;
-        if (((count / (double) length) * 100) > 30) {
-            for (String vowel : vowels) {
-                if (input.contains(vowel)) {
-                    int vowelIndex = input.indexOf(vowel);
-                    if (vowelIndex > 0 && isVowel(input.charAt(vowelIndex - 1))) {
-                        result = result.replace(vowel, "");
-                    } else {
-                        result = result.replace(vowel, "mommy");
-                    }
-                }
-            }
-        }
-        return result;
+        return count;
     }
 
     private boolean isVowel(char c) {

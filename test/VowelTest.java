@@ -58,4 +58,16 @@ public class VowelTest {
         assertEquals("hmommyr",vowel.replaceVowelWithMommyString("hear"));
     }
 
+    @Test
+    public void shouldReplaceVowelAPresentInStringAAAWithStringMommy() throws Exception {
+        Vowel vowel = new Vowel();
+        assertEquals("mommy",vowel.replaceVowelWithMommyString("aaa"));
+    }
+
+    @Test
+    public void shouldReplaceVowelAPresentInStringAAWithStringMommy() throws Exception {
+        Vowel vowel = new Vowel();
+        assertEquals("mommy",vowel.replaceVowelWithMommyString("aa"));
+    }
+
 }
